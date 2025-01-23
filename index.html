@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Task 1</title>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="form__container">
+                <form>
+                    <div class="inputs__container">
+                        <div>
+                            <label for="R">R: </label>
+                            <input type="number" value="0" min="0" max="255" name="R" id="red">
+                        </div>
+
+                        <div>
+                            <label for="G">G: </label>
+                            <input type="number" value="0" min="0" max="255" name="G" id="green">
+                        </div>
+
+                        <div>   
+                            <label for="B">B: </label>
+                            <input type="number" value="0" min="0" max="255" name="B" id="blue">
+                        </div>
+                    </div>  
+
+                    <div class="buttons__container">
+                        <button id="set">Set color</button>
+                        <button id="invert">Invert color</button>
+                    </div>
+                </form>
+                <div id="show__color"></div>
+            </div>
+        </div>
+
+        <script src="main.js"></script>
+    </body>
+</html>
