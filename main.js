@@ -24,6 +24,7 @@ class Color {
     ValidationUtils.validateRGBColor(color);
     this._color = color;
     color_service.changeColor(color);
+    color_service.setInputs(color);
   }
 }
 
@@ -39,7 +40,14 @@ class ColorService {
   
   changeColor(color) {
     ValidationUtils.validateRGBColor(color);
+    localStorage.setItem('color', JSON.stringify(color));
     show.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+  }
+
+  setInputs(color) {
+    redInput.value = color[0];
+    greenInput.value = color[1];
+    blueInput.value = color[2];
   }
 }
 
@@ -50,8 +58,14 @@ const redInput = document.getElementById('red');
 const greenInput = document.getElementById('green');
 const blueInput = document.getElementById('blue');
 const show = document.getElementById('show__color');
+
 const color_manager = new Color(0, 0, 0);
 const color_service = new ColorService(color_manager);
+const colorFromLocalStorage = JSON.parse(localStorage.getItem('color')).map((val) => parseInt(val));
+if(colorFromLocalStorage) { 
+  color_manager.color = colorFromLocalStorage;
+  color_service.setInputs(colorFromLocalStorage);
+}
 
 setButton.addEventListener("click", (event) => {
   event.preventDefault();
