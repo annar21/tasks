@@ -58,12 +58,13 @@ const redInput = document.getElementById('red');
 const greenInput = document.getElementById('green');
 const blueInput = document.getElementById('blue');
 const show = document.getElementById('show__color');
+const form = document.querySelector('form');
 
 const color_manager = new Color(0, 0, 0);
 const color_service = new ColorService(color_manager);
-const colorFromLocalStorage = JSON.parse(localStorage.getItem('color')).map((val) => parseInt(val));
+const colorFromLocalStorage = JSON.parse(localStorage.getItem('color'));
 if(colorFromLocalStorage) { 
-  color_manager.color = colorFromLocalStorage;
+  color_manager.color = colorFromLocalStorage.map((val) => parseInt(val));
   color_service.setInputs(colorFromLocalStorage);
 }
 
@@ -74,7 +75,7 @@ setButton.addEventListener("click", (event) => {
   const green = greenInput.value;
   const blue = blueInput.value;
   color_manager.color = [red, green, blue];
-})
+});
 
 invertButton.addEventListener("click", (event) => {
   event.preventDefault();
@@ -82,4 +83,8 @@ invertButton.addEventListener("click", (event) => {
   const color = color_manager.color;
   const invertedColor = color_service.invertColor(color);
   color_manager.color = invertedColor;
-})
+});
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+});  
